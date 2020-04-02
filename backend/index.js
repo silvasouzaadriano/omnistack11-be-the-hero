@@ -18,18 +18,17 @@
    * 
    * Route Params: São parâmetros utilizados para identificar recursos
    * 
-   * Request Body: 
    */
 
   const express = require('express');
 
   const app = express();
   
-  app.get('/users', (request, response) => {
-    const params = request.query;
+  app.get('/users/:id', (request, response) => {
+    const params = request.params;
     return response.json({
       evento: 'Semana OmniStack 11.0',
-      aluno: `${params.name}`
+      id: `${params.id}`
     });
   });
   
