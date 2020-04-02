@@ -4,22 +4,33 @@
 
  /**
   * Métodos HTTP:
-  * 
-  * GET: Buscar/list uma informação do backend
-  * POST: Criar uma informação do backend
+  * GET: Buscar/Listar uma informação do backend
+  * POST: Criar uma informação no backend
   * PUT: Alterar uma informação no backend
   * DELETE: Deletar uma informação no backend
   */
 
-const express = require('express');
+  /**
+   * Tipos de parâmetros
+   * 
+   * Query: Parâmetros nomeados enviados na rota após "?".
+   *        Normalmente utilizados para: filtros, paginação
+   * 
+   * Route Params: São parâmetros utilizados para identificar recursos
+   * 
+   * Request Body: 
+   */
 
-const app = express();
+  const express = require('express');
 
-app.get('/users', (request, response) => {
-  return response.json({
-    evento: 'Semana OmniStack 11.0',
-    aluno: 'Adriano Souza'
+  const app = express();
+  
+  app.get('/users', (request, response) => {
+    const params = request.query;
+    return response.json({
+      evento: 'Semana OmniStack 11.0',
+      aluno: `${params.name}`
+    });
   });
-});
-
-app.listen(3333);
+  
+  app.listen(3333);
