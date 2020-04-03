@@ -47,8 +47,12 @@ module.exports = {
       .select('ong_id')
       .first();
 
+    if (!incident) {
+      return response.status(400).json({ error: `Incident ID: ${id} does not exist for ONG: ${ong_id}`});
+    }
+
     if (incident.ong_id !== ong_id) {
-      return response.status(401).json({ error: 'Operation not permitted.'});
+      return response.status(401).json({ error: `Operation not permitted. The ong ID: ${ong_id} does not belong to incident ID ${id}`});
     }
 
     await connection('incidents').where('id', id).delete();
