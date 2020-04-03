@@ -31,6 +31,8 @@
   app.post('/users', (request, response) => {
     const data = request.body;
 
+    console.log(data.name);
+
     return response.json({data});
   });
   
